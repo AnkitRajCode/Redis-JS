@@ -5,6 +5,7 @@ Small Express API demonstrating Redis-backed banner storage and MongoDB connecti
 ## Features
 
 - Manage a banner message in Redis
+- Generate and verify OTPs with Redis TTL
 - Check Redis connectivity
 - Check MongoDB connectivity using Mongoose
 - Local development with Docker Compose (Redis + MongoDB)
@@ -23,6 +24,7 @@ Small Express API demonstrating Redis-backed banner storage and MongoDB connecti
 src/
 	index.js      # app bootstrap and non-banner routes
 	banner.js     # /banner router and handlers
+	otp-ttl.js    # /otp router and handlers
 docker-compose.yml
 package.json
 ```
@@ -130,6 +132,63 @@ MONGO_URI=mongodb://localhost:27017/JS_redis
 }
 ```
 
+### OTP (Redis with TTL)
+
+- `POST /otp/generate`
+	- Body:
+
+```json
+{
+	"phoneNumber": "9876543210"
+}
+```
+
+	- Response:
+
+```json
+{
+	"success": true,
+	"otp": "123456"
+}
+```
+
+- `POST /otp/verify`
+	- Body:
+
+```json
+{
+	"phoneNumber": "9876543210",
+	"otp": "123456"
+}
+```
+
+	- Response (success):
+
+```json
+{
+	"success": true
+}
+```
+
+	- Response (invalid):
+
+```json
+{
+	"success": false,
+	"error": "Invalid OTP"
+}
+```
+
+- `GET /otp/verify/:phone/ttl`
+	- Response:
+
+```json
+{
+	"success": true,
+	"ttl": 24
+}
+```
+
 ### Health/Connectivity
 
 - `GET /redis`
@@ -177,6 +236,28 @@ Delete banner:
 
 ```bash
 curl -X DELETE http://localhost:3000/banner
+```
+
+Generate OTP:
+
+```bash
+curl -X POST http://localhost:3000/otp/generate \
+	-H "Content-Type: application/json" \
+	-d '{"phoneNumber":"9876543210"}'
+```
+
+Verify OTP:
+
+```bash
+curl -X POST http://localhost:3000/otp/verify \
+	-H "Content-Type: application/json" \
+	-d '{"phoneNumber":"9876543210","otp":"123456"}'
+```
+
+Check OTP TTL:
+
+```bash
+curl http://localhost:3000/otp/verify/9876543210/ttl
 ```
 
 Check services:
