@@ -1,3 +1,6 @@
+// Banner router concept:
+// Demonstrates a simple Redis string key-value pattern for app-wide state.
+// Uses REST-style endpoints to set, read, delete, and check key existence.
 import { Router } from 'express';
 
 const BANNER_KEY = 'app:banner';

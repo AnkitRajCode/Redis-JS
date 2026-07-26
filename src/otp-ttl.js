@@ -1,3 +1,6 @@
+// OTP router concept:
+// Shows short-lived authentication data using Redis TTL (time to live).
+// Generates OTPs, verifies submitted codes, and exposes remaining expiry time.
 import { Router } from "express";
 
 export function OTPRouter(redis) {

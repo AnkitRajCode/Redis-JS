@@ -1,4 +1,7 @@
-// user profile data can be stored in Redis in two different ways: as a JSON string or as a hash.
+// User router concept:
+// Compares two Redis modeling strategies for profile data:
+// 1) store the full object as a JSON string, 2) store fields in a Redis hash.
+// Useful for learning trade-offs between whole-object reads and field-based access.
 import { Router } from "express";
 
 export function userRouter(redis) {
