@@ -4,6 +4,7 @@ import mongoose from 'mongoose';
 import { createBannerRouter } from './banner.js';
 import { OTPRouter } from './otp-ttl.js';
 import { userRouter } from './jsonVsHash.js';
+import { queueRouter } from './queue.js';
 
 const app = express();
 app.use(express.json());
@@ -13,6 +14,7 @@ const redis = new Redis(process.env.REDIS_URL || 'redis://localhost:6379');
 app.use('/banner', createBannerRouter(redis));
 app.use('/otp', OTPRouter(redis));
 app.use('/user', userRouter(redis));
+app.use('/emails-queue', queueRouter(redis));
 
 app.get('/redis', async (req, res) => {
   const reply = await redis.ping();
