@@ -6,6 +6,7 @@ import { OTPRouter } from './otp-ttl.js';
 import { userRouter } from './jsonVsHash.js';
 import { queueRouter } from './queue.js';
 import { bullmqRouter } from './bullMQ/api.js';
+import { notificationRouter } from './pub-sub/api.js';
 
 const app = express();
 app.use(express.json());
@@ -17,6 +18,7 @@ app.use('/otp', OTPRouter(redis));
 app.use('/user', userRouter(redis));
 app.use('/emails-queue', queueRouter(redis));
 app.use('/bullmq', bullmqRouter(redis));
+app.use('/notifications', notificationRouter(redis));
 
 app.get('/redis', async (req, res) => {
   const reply = await redis.ping();

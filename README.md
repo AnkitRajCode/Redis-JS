@@ -32,6 +32,9 @@ src/
 		queue.js    # emails queue definition + Redis connection
 		api.js      # /bullmq producer router
 		worker.js   # background worker (job consumer)
+	pub-sub/      # Redis Pub/Sub notifications
+		api.js      # /notifications publisher router
+		subscriber.js # channel subscriber (listener)
 docs/           # per-topic documentation
 docker-compose.yml
 package.json
@@ -46,6 +49,7 @@ Each topic has its own detailed guide with concepts, endpoints, and test command
 - [User Profile: JSON vs Hash](docs/json-vs-hash.md)
 - [Email Queue (Redis List)](docs/email-queue.md)
 - [BullMQ Job Queue (Producer + Worker)](docs/bullmq.md)
+- [Pub/Sub Notifications](docs/pub-sub.md)
 - [Health / Connectivity](docs/health-connectivity.md)
 
 ## Prerequisites
@@ -89,6 +93,7 @@ Server runs at `http://localhost:3000`.
 - `npm run dev`: development mode with nodemon
 - `npm start`: run with Node.js (no file watching)
 - `npm run worker`: start the BullMQ worker (job consumer) as a separate process
+- `npm run sub`: start the Pub/Sub subscriber (listener) as a separate process
 
 ## Environment Variables
 

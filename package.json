@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node src/index.js",
     "dev": "nodemon src/index.js",
-    "worker": "node src/bullMQ/worker.js"
+    "worker": "node src/bullMQ/worker.js",
+    "sub": "node src/pub-sub/subscriber.js"
   },
   "dependencies": {
     "bullmq": "^5.81.2",
