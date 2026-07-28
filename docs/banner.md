@@ -96,7 +96,7 @@ curl -X DELETE http://localhost:3000/banner
 
 ## Redis Commands Used
 
-- `SET` — store the message
-- `GET` — read the message
-- `DEL` — delete the key
-- `EXISTS` — check key presence
+- `SET` - store the message
+- `GET` - read the message
+- `DEL` - delete the key
+- `EXISTS` - check key presence

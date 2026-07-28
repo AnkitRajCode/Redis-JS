@@ -89,5 +89,5 @@ curl http://localhost:3000/emails-queue/process-one
 
 ## Redis Commands Used
 
-- `LPUSH` — add a job to the head of the list
-- `RPOP` — remove a job from the tail of the list
+- `LPUSH` - add a job to the head of the list
+- `RPOP` - remove a job from the tail of the list

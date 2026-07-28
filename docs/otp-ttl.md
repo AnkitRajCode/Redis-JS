@@ -100,6 +100,6 @@ curl http://localhost:3000/otp/verify/9876543210/ttl
 
 ## Redis Commands Used
 
-- `SET key value EX 30` — store OTP with a 30-second expiry
-- `GET` — read the OTP for verification
-- `TTL` — read remaining time to live
+- `SET key value EX 30` - store OTP with a 30-second expiry
+- `GET` - read the OTP for verification
+- `TTL` - read remaining time to live

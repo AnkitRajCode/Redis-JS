@@ -121,6 +121,6 @@ curl http://localhost:3000/user/101/hash
 
 ## Redis Commands Used
 
-- `SET` / `GET` — store and read the JSON string
-- `HSET` — store hash fields
-- `HGETALL` — read all hash fields
+- `SET` / `GET` - store and read the JSON string
+- `HSET` - store hash fields
+- `HGETALL` - read all hash fields

@@ -16,7 +16,7 @@ BullMQ splits work into two roles:
 | **Producer** | `api.js` | Adds jobs to the `emails` queue via an HTTP endpoint |
 | **Worker** | `worker.js` | Continuously pulls jobs from the queue and processes them |
 
-A shared Redis `connection` config is defined in `queue.js` and reused by both the queue and the worker. The worker consumes jobs **automatically** — no HTTP endpoint is needed to trigger processing.
+A shared Redis `connection` config is defined in `queue.js` and reused by both the queue and the worker. The worker consumes jobs **automatically** - no HTTP endpoint is needed to trigger processing.
 
 ## Endpoint
 
@@ -52,18 +52,18 @@ Enqueue a welcome-email job.
 
 Jobs are added with retry options:
 
-- `attempts: 3` — retry up to 3 times on failure
-- `backoff: { type: "exponential", delay: 1000 }` — wait longer between each retry
+- `attempts: 3` - retry up to 3 times on failure
+- `backoff: { type: "exponential", delay: 1000 }` - wait longer between each retry
 
 ## Running the Worker
 
 The worker is a **separate process** from the web server. Start both:
 
 ```bash
-# Terminal 1 — API (producer)
+# Terminal 1 - API (producer)
 npm run dev
 
-# Terminal 2 — worker (consumer)
+# Terminal 2 - worker (consumer)
 npm run worker
 ```
 
@@ -92,8 +92,8 @@ Job 1 has completed! ...
 
 The worker listens to job lifecycle events for monitoring:
 
-- `completed` — fired when a job finishes successfully
-- `failed` — fired when a job throws (after all retry attempts are exhausted)
+- `completed` - fired when a job finishes successfully
+- `failed` - fired when a job throws (after all retry attempts are exhausted)
 
 ## Notes
 
