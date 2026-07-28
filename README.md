@@ -27,9 +27,21 @@ src/
 	banner.js     # /banner router and handlers
 	otp-ttl.js    # /otp router and handlers
 	jsonVsHash.js # /user router for JSON vs Hash storage
+	queue.js      # /emails-queue router (Redis list queue)
+docs/           # per-topic documentation
 docker-compose.yml
 package.json
 ```
+
+## Documentation
+
+Each topic has its own detailed guide with concepts, endpoints, and test commands:
+
+- [Banner (Redis String)](docs/banner.md)
+- [OTP with TTL (Redis Expiry)](docs/otp-ttl.md)
+- [User Profile: JSON vs Hash](docs/json-vs-hash.md)
+- [Email Queue (Redis List)](docs/email-queue.md)
+- [Health / Connectivity](docs/health-connectivity.md)
 
 ## Prerequisites
 
@@ -87,6 +99,8 @@ MONGO_URI=mongodb://localhost:27017/JS_redis
 ```
 
 ## API Endpoints
+
+> Detailed endpoint references and test commands are maintained in the per-topic guides under [docs/](docs/) (see [Documentation](#documentation) above). The summaries below are kept for quick reference.
 
 ### Banner (Redis)
 
