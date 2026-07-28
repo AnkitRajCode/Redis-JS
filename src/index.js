@@ -1,15 +1,23 @@
 import express from 'express';
 import Redis from 'ioredis';
 import mongoose from 'mongoose';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { createBannerRouter } from './banner.js';
 import { OTPRouter } from './otp-ttl.js';
 import { userRouter } from './jsonVsHash.js';
 import { queueRouter } from './queue.js';
 import { bullmqRouter } from './bullMQ/api.js';
 import { notificationRouter } from './pub-sub/api.js';
+import { leaderboardRouter } from './liveLeaderBoard/api.js';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const app = express();
 app.use(express.json());
+
+// Interactive LeaderBoard UI at http://localhost:3000/
+app.use(express.static(path.join(__dirname, 'liveLeaderBoard')));
 
 const redis = new Redis(process.env.REDIS_URL || 'redis://localhost:6379');
 
@@ -19,6 +27,7 @@ app.use('/user', userRouter(redis));
 app.use('/emails-queue', queueRouter(redis));
 app.use('/bullmq', bullmqRouter(redis));
 app.use('/notifications', notificationRouter(redis));
+app.use('/', leaderboardRouter(redis));
 
 app.get('/redis', async (req, res) => {
   const reply = await redis.ping();
