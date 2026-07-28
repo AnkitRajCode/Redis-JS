@@ -28,6 +28,10 @@ src/
 	otp-ttl.js    # /otp router and handlers
 	jsonVsHash.js # /user router for JSON vs Hash storage
 	queue.js      # /emails-queue router (Redis list queue)
+	bullMQ/       # BullMQ queue, producer router, and worker
+		queue.js    # emails queue definition + Redis connection
+		api.js      # /bullmq producer router
+		worker.js   # background worker (job consumer)
 docs/           # per-topic documentation
 docker-compose.yml
 package.json
@@ -41,6 +45,7 @@ Each topic has its own detailed guide with concepts, endpoints, and test command
 - [OTP with TTL (Redis Expiry)](docs/otp-ttl.md)
 - [User Profile: JSON vs Hash](docs/json-vs-hash.md)
 - [Email Queue (Redis List)](docs/email-queue.md)
+- [BullMQ Job Queue (Producer + Worker)](docs/bullmq.md)
 - [Health / Connectivity](docs/health-connectivity.md)
 
 ## Prerequisites
@@ -83,6 +88,7 @@ Server runs at `http://localhost:3000`.
 
 - `npm run dev`: development mode with nodemon
 - `npm start`: run with Node.js (no file watching)
+- `npm run worker`: start the BullMQ worker (job consumer) as a separate process
 
 ## Environment Variables
 
